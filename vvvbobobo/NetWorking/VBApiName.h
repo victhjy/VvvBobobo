@@ -1,15 +1,14 @@
 //
-//  ViewController.h
+//  VBApiName.h
 //  vvvbobobo
 //
 //  Created by huangjinyang on 16/10/26.
 //  Copyright © 2016年 huangjinyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : BaseViewController
-
+extern NSString* const APISearch;
+@interface VBApiName : NSObject
 
 @end
-

@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor=[UIColor whiteColor];
+    self.edgesForExtendedLayout=UIRectEdgeNone;
     // Do any additional setup after loading the view.
 }
 

@@ -1,15 +1,17 @@
 //
-//  ViewController.h
+//  VBApiName.m
 //  vvvbobobo
 //
 //  Created by huangjinyang on 16/10/26.
 //  Copyright © 2016年 huangjinyang. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "VBApiName.h"
 
-@interface ViewController : BaseViewController
 
+NSString* const APISearch=@"/2/cardlist";
+
+
+@implementation VBApiName
 
 @end
-

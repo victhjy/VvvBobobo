@@ -81,6 +81,12 @@
 		4667E4D21DC04B60006BEB1C /* NSObject+MJProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4901DC04B60006BEB1C /* NSObject+MJProperty.m */; };
 		4667E4D31DC04B60006BEB1C /* NSString+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4921DC04B60006BEB1C /* NSString+MJExtension.m */; };
 		4667E4D91DC04E28006BEB1C /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4D81DC04E28006BEB1C /* BaseViewController.m */; };
+		4667E4E11DC06D8F006BEB1C /* VBNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4E01DC06D8F006BEB1C /* VBNetManager.m */; };
+		4667E4E51DC072AA006BEB1C /* VBTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4E41DC072AA006BEB1C /* VBTools.m */; };
+		4667E4E81DC0749F006BEB1C /* VBApiName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4E71DC0749F006BEB1C /* VBApiName.m */; };
+		4667E4ED1DC077FD006BEB1C /* VBMBlogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4EC1DC077FD006BEB1C /* VBMBlogModel.m */; };
+		4667E4F01DC0783C006BEB1C /* VBUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4EF1DC0783C006BEB1C /* VBUserModel.m */; };
+		4667E4F31DC08342006BEB1C /* VBSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +262,18 @@
 		4667E4D41DC04B6F006BEB1C /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		4667E4D71DC04E28006BEB1C /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4667E4D81DC04E28006BEB1C /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4667E4DF1DC06D8F006BEB1C /* VBNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBNetManager.h; sourceTree = "<group>"; };
+		4667E4E01DC06D8F006BEB1C /* VBNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBNetManager.m; sourceTree = "<group>"; };
+		4667E4E31DC072AA006BEB1C /* VBTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBTools.h; sourceTree = "<group>"; };
+		4667E4E41DC072AA006BEB1C /* VBTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBTools.m; sourceTree = "<group>"; };
+		4667E4E61DC0749F006BEB1C /* VBApiName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBApiName.h; sourceTree = "<group>"; };
+		4667E4E71DC0749F006BEB1C /* VBApiName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBApiName.m; sourceTree = "<group>"; };
+		4667E4EB1DC077FD006BEB1C /* VBMBlogModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBMBlogModel.h; sourceTree = "<group>"; };
+		4667E4EC1DC077FD006BEB1C /* VBMBlogModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBMBlogModel.m; sourceTree = "<group>"; };
+		4667E4EE1DC0783C006BEB1C /* VBUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBUserModel.h; sourceTree = "<group>"; };
+		4667E4EF1DC0783C006BEB1C /* VBUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBUserModel.m; sourceTree = "<group>"; };
+		4667E4F11DC08342006BEB1C /* VBSearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBSearchResultModel.h; sourceTree = "<group>"; };
+		4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBSearchResultModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -306,10 +324,13 @@
 		4667E3CA1DC04A2B006BEB1C /* vvvbobobo */ = {
 			isa = PBXGroup;
 			children = (
-				4667E3DC1DC04A2C006BEB1C /* Info.plist */,
-				4667E4D61DC04E0D006BEB1C /* Basic */,
+				4667E4EA1DC077EE006BEB1C /* Models */,
+				4667E4E21DC0729A006BEB1C /* Tools */,
+				4667E4DE1DC06CD0006BEB1C /* NetWorking */,
 				4667E3FE1DC04A70006BEB1C /* Libraries */,
+				4667E4D61DC04E0D006BEB1C /* Basic */,
 				4667E3CB1DC04A2B006BEB1C /* Supporting Files */,
+				4667E3DC1DC04A2C006BEB1C /* Info.plist */,
 			);
 			path = vvvbobobo;
 			sourceTree = "<group>";
@@ -596,6 +617,39 @@
 			path = Basic;
 			sourceTree = "<group>";
 		};
+		4667E4DE1DC06CD0006BEB1C /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				4667E4DF1DC06D8F006BEB1C /* VBNetManager.h */,
+				4667E4E01DC06D8F006BEB1C /* VBNetManager.m */,
+				4667E4E61DC0749F006BEB1C /* VBApiName.h */,
+				4667E4E71DC0749F006BEB1C /* VBApiName.m */,
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
+		4667E4E21DC0729A006BEB1C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4667E4E31DC072AA006BEB1C /* VBTools.h */,
+				4667E4E41DC072AA006BEB1C /* VBTools.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4667E4EA1DC077EE006BEB1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4667E4EB1DC077FD006BEB1C /* VBMBlogModel.h */,
+				4667E4EC1DC077FD006BEB1C /* VBMBlogModel.m */,
+				4667E4EE1DC0783C006BEB1C /* VBUserModel.h */,
+				4667E4EF1DC0783C006BEB1C /* VBUserModel.m */,
+				4667E4F11DC08342006BEB1C /* VBSearchResultModel.h */,
+				4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -658,6 +712,7 @@
 		4667E3C01DC04A2B006BEB1C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VB;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = huangjinyang;
 				TargetAttributes = {
@@ -738,6 +793,7 @@
 				4667E4C61DC04B60006BEB1C /* UIImageView+HighlightedWebCache.m in Sources */,
 				4667E3D31DC04A2C006BEB1C /* ViewController.m in Sources */,
 				4667E4BA1DC04B60006BEB1C /* NSData+ImageContentType.m in Sources */,
+				4667E4E51DC072AA006BEB1C /* VBTools.m in Sources */,
 				4667E3D01DC04A2C006BEB1C /* AppDelegate.m in Sources */,
 				4667E4941DC04B60006BEB1C /* AFNetworkReachabilityManager.m in Sources */,
 				4667E4991DC04B60006BEB1C /* UIScrollView+EmptyDataSet.m in Sources */,
@@ -751,6 +807,8 @@
 				4667E4CA1DC04B60006BEB1C /* MJExtensionConst.m in Sources */,
 				4667E49F1DC04B60006BEB1C /* MASViewAttribute.m in Sources */,
 				4667E4BB1DC04B60006BEB1C /* SDImageCache.m in Sources */,
+				4667E4ED1DC077FD006BEB1C /* VBMBlogModel.m in Sources */,
+				4667E4F01DC0783C006BEB1C /* VBUserModel.m in Sources */,
 				4667E4AD1DC04B60006BEB1C /* MJRefreshBackGifFooter.m in Sources */,
 				4667E4BD1DC04B60006BEB1C /* SDWebImageDecoder.m in Sources */,
 				4667E4D01DC04B60006BEB1C /* NSObject+MJCoding.m in Sources */,
@@ -764,6 +822,7 @@
 				4667E4AE1DC04B60006BEB1C /* MJRefreshBackNormalFooter.m in Sources */,
 				4667E4D11DC04B60006BEB1C /* NSObject+MJKeyValue.m in Sources */,
 				4667E4C51DC04B60006BEB1C /* UIImage+WebP.m in Sources */,
+				4667E4F31DC08342006BEB1C /* VBSearchResultModel.m in Sources */,
 				4667E4AB1DC04B60006BEB1C /* MJRefreshAutoNormalFooter.m in Sources */,
 				4667E49C1DC04B60006BEB1C /* MASConstraint.m in Sources */,
 				4667E4B51DC04B60006BEB1C /* NSBundle+MJRefresh.m in Sources */,
@@ -775,7 +834,9 @@
 				4667E4CC1DC04B60006BEB1C /* MJProperty.m in Sources */,
 				4667E4C81DC04B60006BEB1C /* UIView+WebCacheOperation.m in Sources */,
 				4667E4C11DC04B60006BEB1C /* SDWebImagePrefetcher.m in Sources */,
+				4667E4E11DC06D8F006BEB1C /* VBNetManager.m in Sources */,
 				4667E4A21DC04B60006BEB1C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				4667E4E81DC0749F006BEB1C /* VBApiName.m in Sources */,
 				4667E4B41DC04B60006BEB1C /* MJRefreshConst.m in Sources */,
 				4667E4AA1DC04B60006BEB1C /* MJRefreshAutoGifFooter.m in Sources */,
 				4667E4CE1DC04B60006BEB1C /* MJPropertyType.m in Sources */,
@@ -939,6 +1000,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = vvvbobobo/PrefixHeader.pch;
 				INFOPLIST_FILE = vvvbobobo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.vvvbobobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -953,6 +1015,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = vvvbobobo/PrefixHeader.pch;
 				INFOPLIST_FILE = vvvbobobo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.vvvbobobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1024,6 +1087,7 @@
 				4667E3F71DC04A2C006BEB1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4667E3F81DC04A2C006BEB1C /* Build configuration list for PBXNativeTarget "vvvboboboTests" */ = {
 			isa = XCConfigurationList;
@@ -1032,6 +1096,7 @@
 				4667E3FA1DC04A2C006BEB1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4667E3FB1DC04A2C006BEB1C /* Build configuration list for PBXNativeTarget "vvvboboboUITests" */ = {
 			isa = XCConfigurationList;
@@ -1040,6 +1105,7 @@
 				4667E3FD1DC04A2C006BEB1C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
