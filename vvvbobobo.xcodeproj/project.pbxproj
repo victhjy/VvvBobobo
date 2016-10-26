@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4667E3CD1DC04A2C006BEB1C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E3CC1DC04A2C006BEB1C /* main.m */; };
 		4667E3D01DC04A2C006BEB1C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E3CF1DC04A2C006BEB1C /* AppDelegate.m */; };
-		4667E3D31DC04A2C006BEB1C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E3D21DC04A2C006BEB1C /* ViewController.m */; };
+		4667E3D31DC04A2C006BEB1C /* VBSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E3D21DC04A2C006BEB1C /* VBSearchViewController.m */; };
 		4667E3D61DC04A2C006BEB1C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4667E3D41DC04A2C006BEB1C /* Main.storyboard */; };
 		4667E3D81DC04A2C006BEB1C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4667E3D71DC04A2C006BEB1C /* Assets.xcassets */; };
 		4667E3DB1DC04A2C006BEB1C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4667E3D91DC04A2C006BEB1C /* LaunchScreen.storyboard */; };
@@ -87,6 +87,13 @@
 		4667E4ED1DC077FD006BEB1C /* VBMBlogModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4EC1DC077FD006BEB1C /* VBMBlogModel.m */; };
 		4667E4F01DC0783C006BEB1C /* VBUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4EF1DC0783C006BEB1C /* VBUserModel.m */; };
 		4667E4F31DC08342006BEB1C /* VBSearchResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */; };
+		4667E4F71DC097C9006BEB1C /* VBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4F61DC097C9006BEB1C /* VBMainViewController.m */; };
+		4667E4FA1DC098EB006BEB1C /* Note.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4F91DC098EB006BEB1C /* Note.m */; };
+		4667E4FD1DC09B06006BEB1C /* VBFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E4FC1DC09B06006BEB1C /* VBFilterViewController.m */; };
+		4667E5011DC09D03006BEB1C /* VBBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E5001DC09D03006BEB1C /* VBBaseTableViewCell.m */; };
+		4667E5041DC09D5F006BEB1C /* VBSearchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E5031DC09D5F006BEB1C /* VBSearchListCell.m */; };
+		4667E5081DC0A453006BEB1C /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E5061DC0A453006BEB1C /* UIView+Frame.m */; };
+		4667E50B1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,8 +118,8 @@
 		4667E3CC1DC04A2C006BEB1C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4667E3CE1DC04A2C006BEB1C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4667E3CF1DC04A2C006BEB1C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4667E3D11DC04A2C006BEB1C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4667E3D21DC04A2C006BEB1C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4667E3D11DC04A2C006BEB1C /* VBSearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = VBSearchViewController.h; path = ../VBSearchViewController.h; sourceTree = "<group>"; };
+		4667E3D21DC04A2C006BEB1C /* VBSearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = VBSearchViewController.m; path = ../VBSearchViewController.m; sourceTree = "<group>"; };
 		4667E3D51DC04A2C006BEB1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4667E3D71DC04A2C006BEB1C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4667E3DA1DC04A2C006BEB1C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -274,6 +281,20 @@
 		4667E4EF1DC0783C006BEB1C /* VBUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBUserModel.m; sourceTree = "<group>"; };
 		4667E4F11DC08342006BEB1C /* VBSearchResultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBSearchResultModel.h; sourceTree = "<group>"; };
 		4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBSearchResultModel.m; sourceTree = "<group>"; };
+		4667E4F51DC097C9006BEB1C /* VBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBMainViewController.h; sourceTree = "<group>"; };
+		4667E4F61DC097C9006BEB1C /* VBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBMainViewController.m; sourceTree = "<group>"; };
+		4667E4F81DC098EB006BEB1C /* Note.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Note.h; sourceTree = "<group>"; };
+		4667E4F91DC098EB006BEB1C /* Note.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Note.m; sourceTree = "<group>"; };
+		4667E4FB1DC09B06006BEB1C /* VBFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBFilterViewController.h; sourceTree = "<group>"; };
+		4667E4FC1DC09B06006BEB1C /* VBFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBFilterViewController.m; sourceTree = "<group>"; };
+		4667E4FF1DC09D03006BEB1C /* VBBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBBaseTableViewCell.h; sourceTree = "<group>"; };
+		4667E5001DC09D03006BEB1C /* VBBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBBaseTableViewCell.m; sourceTree = "<group>"; };
+		4667E5021DC09D5F006BEB1C /* VBSearchListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBSearchListCell.h; sourceTree = "<group>"; };
+		4667E5031DC09D5F006BEB1C /* VBSearchListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBSearchListCell.m; sourceTree = "<group>"; };
+		4667E5061DC0A453006BEB1C /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		4667E5071DC0A453006BEB1C /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		4667E5091DC0ACBA006BEB1C /* UILabel+HeightAndWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HeightAndWidth.h"; sourceTree = "<group>"; };
+		4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HeightAndWidth.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,6 +345,9 @@
 		4667E3CA1DC04A2B006BEB1C /* vvvbobobo */ = {
 			isa = PBXGroup;
 			children = (
+				4667E5051DC0A433006BEB1C /* Categary */,
+				4667E4FE1DC09CD8006BEB1C /* Cells */,
+				4667E4F41DC0979C006BEB1C /* Controllers */,
 				4667E4EA1DC077EE006BEB1C /* Models */,
 				4667E4E21DC0729A006BEB1C /* Tools */,
 				4667E4DE1DC06CD0006BEB1C /* NetWorking */,
@@ -340,13 +364,13 @@
 			children = (
 				4667E3CE1DC04A2C006BEB1C /* AppDelegate.h */,
 				4667E3CF1DC04A2C006BEB1C /* AppDelegate.m */,
-				4667E3D11DC04A2C006BEB1C /* ViewController.h */,
-				4667E3D21DC04A2C006BEB1C /* ViewController.m */,
 				4667E3D41DC04A2C006BEB1C /* Main.storyboard */,
 				4667E3D71DC04A2C006BEB1C /* Assets.xcassets */,
 				4667E3D91DC04A2C006BEB1C /* LaunchScreen.storyboard */,
 				4667E3CC1DC04A2C006BEB1C /* main.m */,
 				4667E4D41DC04B6F006BEB1C /* PrefixHeader.pch */,
+				4667E4F81DC098EB006BEB1C /* Note.h */,
+				4667E4F91DC098EB006BEB1C /* Note.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -613,6 +637,8 @@
 			children = (
 				4667E4D71DC04E28006BEB1C /* BaseViewController.h */,
 				4667E4D81DC04E28006BEB1C /* BaseViewController.m */,
+				4667E4FF1DC09D03006BEB1C /* VBBaseTableViewCell.h */,
+				4667E5001DC09D03006BEB1C /* VBBaseTableViewCell.m */,
 			);
 			path = Basic;
 			sourceTree = "<group>";
@@ -648,6 +674,39 @@
 				4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4667E4F41DC0979C006BEB1C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4667E3D11DC04A2C006BEB1C /* VBSearchViewController.h */,
+				4667E3D21DC04A2C006BEB1C /* VBSearchViewController.m */,
+				4667E4F51DC097C9006BEB1C /* VBMainViewController.h */,
+				4667E4F61DC097C9006BEB1C /* VBMainViewController.m */,
+				4667E4FB1DC09B06006BEB1C /* VBFilterViewController.h */,
+				4667E4FC1DC09B06006BEB1C /* VBFilterViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		4667E4FE1DC09CD8006BEB1C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4667E5021DC09D5F006BEB1C /* VBSearchListCell.h */,
+				4667E5031DC09D5F006BEB1C /* VBSearchListCell.m */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		4667E5051DC0A433006BEB1C /* Categary */ = {
+			isa = PBXGroup;
+			children = (
+				4667E5061DC0A453006BEB1C /* UIView+Frame.m */,
+				4667E5071DC0A453006BEB1C /* UIView+Frame.h */,
+				4667E5091DC0ACBA006BEB1C /* UILabel+HeightAndWidth.h */,
+				4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */,
+			);
+			path = Categary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -790,8 +849,9 @@
 				4667E4B61DC04B60006BEB1C /* UIScrollView+MJExtension.m in Sources */,
 				4667E4A51DC04B60006BEB1C /* MJRefreshAutoFooter.m in Sources */,
 				4667E4981DC04B60006BEB1C /* AFURLSessionManager.m in Sources */,
+				4667E5011DC09D03006BEB1C /* VBBaseTableViewCell.m in Sources */,
 				4667E4C61DC04B60006BEB1C /* UIImageView+HighlightedWebCache.m in Sources */,
-				4667E3D31DC04A2C006BEB1C /* ViewController.m in Sources */,
+				4667E3D31DC04A2C006BEB1C /* VBSearchViewController.m in Sources */,
 				4667E4BA1DC04B60006BEB1C /* NSData+ImageContentType.m in Sources */,
 				4667E4E51DC072AA006BEB1C /* VBTools.m in Sources */,
 				4667E3D01DC04A2C006BEB1C /* AppDelegate.m in Sources */,
@@ -801,8 +861,10 @@
 				4667E4D91DC04E28006BEB1C /* BaseViewController.m in Sources */,
 				4667E4A71DC04B60006BEB1C /* MJRefreshComponent.m in Sources */,
 				4667E4B71DC04B60006BEB1C /* UIScrollView+MJRefresh.m in Sources */,
+				4667E5081DC0A453006BEB1C /* UIView+Frame.m in Sources */,
 				4667E4D21DC04B60006BEB1C /* NSObject+MJProperty.m in Sources */,
 				4667E4BC1DC04B60006BEB1C /* SDWebImageCompat.m in Sources */,
+				4667E50B1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m in Sources */,
 				4667E4C01DC04B60006BEB1C /* SDWebImageManager.m in Sources */,
 				4667E4CA1DC04B60006BEB1C /* MJExtensionConst.m in Sources */,
 				4667E49F1DC04B60006BEB1C /* MASViewAttribute.m in Sources */,
@@ -829,6 +891,7 @@
 				4667E4B81DC04B60006BEB1C /* UIView+MJExtension.m in Sources */,
 				4667E4B11DC04B60006BEB1C /* MJRefreshNormalHeader.m in Sources */,
 				4667E4AC1DC04B60006BEB1C /* MJRefreshAutoStateFooter.m in Sources */,
+				4667E5041DC09D5F006BEB1C /* VBSearchListCell.m in Sources */,
 				4667E4A61DC04B60006BEB1C /* MJRefreshBackFooter.m in Sources */,
 				4667E4B01DC04B60006BEB1C /* MJRefreshGifHeader.m in Sources */,
 				4667E4CC1DC04B60006BEB1C /* MJProperty.m in Sources */,
@@ -836,10 +899,12 @@
 				4667E4C11DC04B60006BEB1C /* SDWebImagePrefetcher.m in Sources */,
 				4667E4E11DC06D8F006BEB1C /* VBNetManager.m in Sources */,
 				4667E4A21DC04B60006BEB1C /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				4667E4FD1DC09B06006BEB1C /* VBFilterViewController.m in Sources */,
 				4667E4E81DC0749F006BEB1C /* VBApiName.m in Sources */,
 				4667E4B41DC04B60006BEB1C /* MJRefreshConst.m in Sources */,
 				4667E4AA1DC04B60006BEB1C /* MJRefreshAutoGifFooter.m in Sources */,
 				4667E4CE1DC04B60006BEB1C /* MJPropertyType.m in Sources */,
+				4667E4F71DC097C9006BEB1C /* VBMainViewController.m in Sources */,
 				4667E4C31DC04B60006BEB1C /* UIImage+GIF.m in Sources */,
 				4667E4A81DC04B60006BEB1C /* MJRefreshFooter.m in Sources */,
 				4667E49E1DC04B60006BEB1C /* MASLayoutConstraint.m in Sources */,
@@ -854,6 +919,7 @@
 				4667E4961DC04B60006BEB1C /* AFURLRequestSerialization.m in Sources */,
 				4667E4C71DC04B60006BEB1C /* UIImageView+WebCache.m in Sources */,
 				4667E4971DC04B60006BEB1C /* AFURLResponseSerialization.m in Sources */,
+				4667E4FA1DC098EB006BEB1C /* Note.m in Sources */,
 				4667E4931DC04B60006BEB1C /* AFHTTPSessionManager.m in Sources */,
 				4667E4A01DC04B60006BEB1C /* MASViewConstraint.m in Sources */,
 			);

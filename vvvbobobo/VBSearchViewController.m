@@ -1,20 +1,24 @@
 //
-//  ViewController.m
+//  VBSearchViewController.m
 //  vvvbobobo
 //
 //  Created by huangjinyang on 16/10/26.
 //  Copyright © 2016年 huangjinyang. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "VBSearchViewController.h"
 #import "VBSearchResultModel.h"
-@interface ViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
+#import "VBSearchListCell.h"
+#import "VBMBlogModel.h"
+#import "VBFilterViewController.h"
+
+@interface VBSearchViewController ()<UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property(nonatomic,strong)UITableView* tableView;
 @property(nonatomic,strong)NSMutableArray* resultMBlogs;
 @end
 
-@implementation ViewController
-
+@implementation VBSearchViewController
+static NSString* reuseCell=@"reuseSearchResultCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title=@"搜什么搜";
@@ -25,6 +29,7 @@
 -(void)_createUI{
     UISearchBar* searchBar=[[UISearchBar alloc]init];
     searchBar.delegate=self;
+    [searchBar setTag:10086];
     
     [self.view addSubview:searchBar];
     [self.view addSubview:self.tableView];
@@ -37,6 +42,8 @@
         make.left.right.bottom.equalTo(self.view);
         make.top.equalTo(searchBar.mas_bottom);
     }];
+    
+    [self.tableView registerClass:[VBSearchListCell class] forCellReuseIdentifier:reuseCell];
     
     
 }
@@ -98,8 +105,9 @@
 }
 
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
-    searchBar.text=@"";
+    
     [searchBar resignFirstResponder];
+    searchBar.text=@"";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -118,15 +126,30 @@
 }
 
 -(UITableViewCell* )tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
     VBSearchResultModel* model=self.resultMBlogs[indexPath.row];
-    cell.textLabel.text=[NSString stringWithFormat:@"用户名%@",model.mblog.user.name];
+    
+    VBSearchListCell* cell=[tableView dequeueReusableCellWithIdentifier:reuseCell forIndexPath:indexPath];
+    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+    [cell configWithModel:(VBMBlogModel* )model.mblog];
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    VBSearchResultModel* model=self.resultMBlogs[indexPath.row];
+    
+    VBSearchListCell* cell=[tableView dequeueReusableCellWithIdentifier:reuseCell];
+    [cell configWithModel:(VBMBlogModel* )model.mblog];
+    return [cell cellHeight];
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    UISearchBar* searchBar=[self.view viewWithTag:10086];
+    [searchBar resignFirstResponder];
+}
 #pragma mark - Getter
 
 -(UITableView* )tableView{
@@ -134,6 +157,7 @@
         _tableView=[[UITableView alloc]init];
         _tableView.delegate=self;
         _tableView.dataSource=self;
+        [self scrollViewDidScroll:_tableView];
     }
     return _tableView;
 }

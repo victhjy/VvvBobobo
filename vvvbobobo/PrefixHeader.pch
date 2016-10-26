@@ -18,6 +18,8 @@
 #import "VBTools.h"
 #import "VBNetManager.h"
 #import "VBApiName.h"
+#import "UIView+Frame.h"
+#import "UILabel+HeightAndWidth.h"
 
 
 #ifdef DEBUG
