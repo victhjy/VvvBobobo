@@ -21,15 +21,19 @@
     self.userNameLabel=[UILabel new];
     self.mBlogTextLabel=[UILabel new];
     self.commentCountLabel=[UILabel new];
+    self.mBlogIdLabel=[UILabel new];
+    self.createTimeLabel=[UILabel new];
     
     self.mBlogTextLabel.numberOfLines=0;
     self.mBlogTextLabel.preferredMaxLayoutWidth=UIScreenWidth-20;
-    self.mBlogTextLabel.font=[UIFont systemFontOfSize:12];
+    self.mBlogTextLabel.font=[UIFont systemFontOfSize:14];
     
     self.userNameLabel.font=self.mBlogTextLabel.font;
     self.commentCountLabel.font=self.mBlogTextLabel.font;
+    self.mBlogIdLabel.font=self.mBlogTextLabel.font;
+//    self.createTimeLabel.font=self.mBlogTextLabel.font;
     
-    [self.contentView addSubviews:@[self.userNameLabel,self.mBlogTextLabel,self.commentCountLabel]];
+    [self.contentView addSubviews:@[self.userNameLabel,self.mBlogTextLabel,self.commentCountLabel,self.createTimeLabel,self.mBlogIdLabel]];
     
     [self.userNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.contentView).offset(10);
@@ -40,8 +44,18 @@
     }];
     [self.commentCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mBlogTextLabel);
+        make.top.equalTo(self.mBlogIdLabel.mas_bottom).offset(10);
+    }];
+    
+    [self.mBlogIdLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mBlogTextLabel);
         make.top.equalTo(self.mBlogTextLabel.mas_bottom).offset(10);
     }];
+    
+//    [self.createTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.commentCountLabel.mas_right).offset(10);
+//        make.top.equalTo(self.commentCountLabel);
+//    }];
     
     
 }
@@ -51,6 +65,9 @@
     self.mBlogTextLabel.text=model.text;
     self.commentCountLabel.text=[NSString stringWithFormat:@"评论数:%zd",model.comments_count];
     CGFloat newHeight=[UILabel getHeightByWidth:UIScreenWidth-20 title:self.mBlogTextLabel.text font:self.mBlogTextLabel.font];
+    self.mBlogIdLabel.text=[NSString stringWithFormat:@"ID  ：  %zd",model.mBlogId];
+//    self.createTimeLabel.text=[NSString stringWithFormat:@"发布日期: %@",model.created_at];
+    
     [self.mBlogTextLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(newHeight);
     }];

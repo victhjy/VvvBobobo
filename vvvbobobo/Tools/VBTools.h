@@ -89,4 +89,14 @@
  *  @return 输出字符串型的时间 10-12 12：00
  */
 +(NSString* )dateStringFromNSDate:(NSDate* )date;
+
+/**
+ *  showMessage
+ *
+ *  @param message 提示信息
+ *  @param view  提示的界面
+ *
+ *
+ */
++ (void)showMessage:(NSString *)message inView:(UIView *)view;
 @end

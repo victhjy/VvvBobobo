@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString* const APISearch;
+extern NSString* const APIGetAllComments;
 @interface VBApiName : NSObject
 
 @end

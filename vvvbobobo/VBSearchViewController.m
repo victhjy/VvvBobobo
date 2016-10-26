@@ -86,6 +86,7 @@ static NSString* reuseCell=@"reuseSearchResultCell";
                              @"lfid":@"231091",
                              @"moduleID":@"pagecard",
                              };
+    __weak typeof(self) weakself=self;
     [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APISearch WithParams:parmaDic WithSuccessBlock:^(NSDictionary *dic) {
         NSArray* cards=[dic valueForKey:@"cards"];
         NSMutableArray* testArr=[NSMutableArray new];
@@ -94,11 +95,14 @@ static NSString* reuseCell=@"reuseSearchResultCell";
                 [testArr addObjectsFromArray:[dic objectForKey:@"card_group"]];
             }
         }
-        self.resultMBlogs=[VBSearchResultModel mj_objectArrayWithKeyValuesArray:testArr];
-        [self.tableView reloadData];
+        weakself.resultMBlogs=[VBSearchResultModel mj_objectArrayWithKeyValuesArray:testArr];
+        [weakself.tableView reloadData];
+        [VBTools showMessage:@"加载成功" inView:weakself.view];
 
     } WithFailurBlock:^(NSError *error) {
         VBLog(@"Error :%@",error);
+        NSString* errorString=[NSString stringWithFormat:@"加载失败:%@",error];
+        [VBTools showMessage:errorString inView:weakself.view];
     }];
     
     
@@ -143,7 +147,11 @@ static NSString* reuseCell=@"reuseSearchResultCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    VBFilterViewController* filterVC=[VBFilterViewController new];
+    VBSearchResultModel* model=self.resultMBlogs[indexPath.row];
+    filterVC.mblogModel=model.mblog;
     
+    [self.navigationController pushViewController:filterVC animated:YES];
 }
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -157,6 +165,7 @@ static NSString* reuseCell=@"reuseSearchResultCell";
         _tableView=[[UITableView alloc]init];
         _tableView.delegate=self;
         _tableView.dataSource=self;
+        _tableView.tableFooterView=[UIView new];
         [self scrollViewDidScroll:_tableView];
     }
     return _tableView;

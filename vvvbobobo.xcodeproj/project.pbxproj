@@ -94,6 +94,9 @@
 		4667E5041DC09D5F006BEB1C /* VBSearchListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E5031DC09D5F006BEB1C /* VBSearchListCell.m */; };
 		4667E5081DC0A453006BEB1C /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E5061DC0A453006BEB1C /* UIView+Frame.m */; };
 		4667E50B1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m in Sources */ = {isa = PBXBuildFile; fileRef = 4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */; };
+		81C164181DC0D76800113EB6 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C164171DC0D76800113EB6 /* MBProgressHUD.m */; };
+		81C1641B1DC0E8A500113EB6 /* VBCommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1641A1DC0E8A500113EB6 /* VBCommentModel.m */; };
+		81C1641E1DC0ED9700113EB6 /* VBFiltedCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C1641D1DC0ED9700113EB6 /* VBFiltedCommentCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -295,6 +298,12 @@
 		4667E5071DC0A453006BEB1C /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		4667E5091DC0ACBA006BEB1C /* UILabel+HeightAndWidth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+HeightAndWidth.h"; sourceTree = "<group>"; };
 		4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+HeightAndWidth.m"; sourceTree = "<group>"; };
+		81C164161DC0D76800113EB6 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		81C164171DC0D76800113EB6 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		81C164191DC0E8A500113EB6 /* VBCommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBCommentModel.h; sourceTree = "<group>"; };
+		81C1641A1DC0E8A500113EB6 /* VBCommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBCommentModel.m; sourceTree = "<group>"; };
+		81C1641C1DC0ED9700113EB6 /* VBFiltedCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VBFiltedCommentCell.h; sourceTree = "<group>"; };
+		81C1641D1DC0ED9700113EB6 /* VBFiltedCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VBFiltedCommentCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +405,7 @@
 		4667E3FE1DC04A70006BEB1C /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				81C164151DC0D76800113EB6 /* MBProgressHUD */,
 				4667E3FF1DC04B60006BEB1C /* AFNetworking */,
 				4667E40D1DC04B60006BEB1C /* DZNEmpty */,
 				4667E4101DC04B60006BEB1C /* Masonry */,
@@ -672,6 +682,8 @@
 				4667E4EF1DC0783C006BEB1C /* VBUserModel.m */,
 				4667E4F11DC08342006BEB1C /* VBSearchResultModel.h */,
 				4667E4F21DC08342006BEB1C /* VBSearchResultModel.m */,
+				81C164191DC0E8A500113EB6 /* VBCommentModel.h */,
+				81C1641A1DC0E8A500113EB6 /* VBCommentModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -694,6 +706,8 @@
 			children = (
 				4667E5021DC09D5F006BEB1C /* VBSearchListCell.h */,
 				4667E5031DC09D5F006BEB1C /* VBSearchListCell.m */,
+				81C1641C1DC0ED9700113EB6 /* VBFiltedCommentCell.h */,
+				81C1641D1DC0ED9700113EB6 /* VBFiltedCommentCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -707,6 +721,15 @@
 				4667E50A1DC0ACBA006BEB1C /* UILabel+HeightAndWidth.m */,
 			);
 			path = Categary;
+			sourceTree = "<group>";
+		};
+		81C164151DC0D76800113EB6 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				81C164161DC0D76800113EB6 /* MBProgressHUD.h */,
+				81C164171DC0D76800113EB6 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -777,6 +800,7 @@
 				TargetAttributes = {
 					4667E3C71DC04A2B006BEB1C = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = W5CST6BRTL;
 					};
 					4667E3E01DC04A2C006BEB1C = {
 						CreatedOnToolsVersion = 7.3;
@@ -870,6 +894,7 @@
 				4667E49F1DC04B60006BEB1C /* MASViewAttribute.m in Sources */,
 				4667E4BB1DC04B60006BEB1C /* SDImageCache.m in Sources */,
 				4667E4ED1DC077FD006BEB1C /* VBMBlogModel.m in Sources */,
+				81C1641B1DC0E8A500113EB6 /* VBCommentModel.m in Sources */,
 				4667E4F01DC0783C006BEB1C /* VBUserModel.m in Sources */,
 				4667E4AD1DC04B60006BEB1C /* MJRefreshBackGifFooter.m in Sources */,
 				4667E4BD1DC04B60006BEB1C /* SDWebImageDecoder.m in Sources */,
@@ -890,6 +915,7 @@
 				4667E4B51DC04B60006BEB1C /* NSBundle+MJRefresh.m in Sources */,
 				4667E4B81DC04B60006BEB1C /* UIView+MJExtension.m in Sources */,
 				4667E4B11DC04B60006BEB1C /* MJRefreshNormalHeader.m in Sources */,
+				81C164181DC0D76800113EB6 /* MBProgressHUD.m in Sources */,
 				4667E4AC1DC04B60006BEB1C /* MJRefreshAutoStateFooter.m in Sources */,
 				4667E5041DC09D5F006BEB1C /* VBSearchListCell.m in Sources */,
 				4667E4A61DC04B60006BEB1C /* MJRefreshBackFooter.m in Sources */,
@@ -908,6 +934,7 @@
 				4667E4C31DC04B60006BEB1C /* UIImage+GIF.m in Sources */,
 				4667E4A81DC04B60006BEB1C /* MJRefreshFooter.m in Sources */,
 				4667E49E1DC04B60006BEB1C /* MASLayoutConstraint.m in Sources */,
+				81C1641E1DC0ED9700113EB6 /* VBFiltedCommentCell.m in Sources */,
 				4667E4AF1DC04B60006BEB1C /* MJRefreshBackStateFooter.m in Sources */,
 				4667E4CD1DC04B60006BEB1C /* MJPropertyKey.m in Sources */,
 				4667E4B91DC04B60006BEB1C /* MKAnnotationView+WebCache.m in Sources */,
@@ -1062,6 +1089,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = vvvbobobo/PrefixHeader.pch;
@@ -1070,6 +1099,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.vvvbobobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1077,6 +1107,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = vvvbobobo/PrefixHeader.pch;
@@ -1085,6 +1117,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.first.vvvbobobo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

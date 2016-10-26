@@ -13,6 +13,8 @@
 @property(nonatomic,strong)UILabel* userNameLabel;
 @property(nonatomic,strong)UILabel* commentCountLabel;
 @property(nonatomic,strong)UILabel* mBlogTextLabel;
+@property(nonatomic,strong)UILabel* createTimeLabel;
+@property(nonatomic,strong)UILabel* mBlogIdLabel;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 -(void)configWithModel:(VBMBlogModel* )model;

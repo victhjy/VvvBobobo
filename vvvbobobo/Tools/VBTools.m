@@ -196,4 +196,52 @@
     return returnString;
 }
 
+/**
+ *  showMessage
+ *
+ *  @param message 提示信息
+ *  @param view  提示的界面
+ *
+ *
+ */
++ (void)showMessage:(NSString *)message inView:(UIView *)view {
+    //kScreenWidth-80
+    MBProgressHUD * hud=[[MBProgressHUD alloc] initWithView:view];
+    [view addSubview:hud];
+    
+    //    CGSize size = [message sizeWithFont:font maxWidth:maxWidth];
+    UIFont *font = [UIFont systemFontOfSize:16];
+    CGSize size;
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:font,NSFontAttributeName,nil];
+    CGSize maxSize = CGSizeMake(UIScreenWidth - 80, MAXFLOAT);
+    
+    // 获得系统版本
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 70000
+    size =  [message boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:dict context:nil].size;
+#else
+    size = [message sizeWithFont:font constrainedToSize:maxSize];
+#endif
+    
+    UILabel *customLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    customLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    customLabel.font = font;
+    customLabel.numberOfLines = 0;
+    customLabel.textColor = [UIColor blackColor];
+    customLabel.text = message;
+    hud.userInteractionEnabled = NO;
+    
+    hud.customView = customLabel;
+    hud.mode = MBProgressHUDModeCustomView;
+    [hud showAnimated:YES];
+    [hud hideAnimated:YES afterDelay:2];
+}
+
+//把链接中的参数拆为字典
+//NSArray* arr=[oldString componentsSeparatedByString:@"&"];
+//NSMutableArray* muArr=[NSMutableArray new];
+//for (int  i = 0; i<arr.count; i++) {
+//    [muArr addObject:[[NSString stringWithFormat:@"气@\"%@",arr[i]] stringByReplacingOccurrencesOfString:@"=" withString:@"\":气@\""]];
+//}
+//NSLog(@"%@",muArr);
+
 @end

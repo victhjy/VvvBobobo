@@ -10,7 +10,7 @@
 
 
 NSString* const APISearch=@"/2/cardlist";
-
+NSString* const APIGetAllComments=@"/2/comments/build_comments";
 
 @implementation VBApiName
 

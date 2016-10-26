@@ -7,7 +7,7 @@
 //
 
 #import "BaseViewController.h"
-
+#import "VBMBlogModel.h"
 @interface VBFilterViewController : BaseViewController
-
+@property(nonatomic,strong)VBMBlogModel* mblogModel;
 @end

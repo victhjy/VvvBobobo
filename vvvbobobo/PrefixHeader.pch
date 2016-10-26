@@ -20,7 +20,7 @@
 #import "VBApiName.h"
 #import "UIView+Frame.h"
 #import "UILabel+HeightAndWidth.h"
-
+#import "MBProgressHUD.h"
 
 #ifdef DEBUG
 #   define VBLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
