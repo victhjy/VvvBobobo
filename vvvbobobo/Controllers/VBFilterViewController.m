@@ -67,7 +67,16 @@ static NSString* reuseCell=@"reuseCell";
 }
 
 -(void)gotoSelect{
-    
+    [self.inputField resignFirstResponder];
+    self.filtedArr=[NSMutableArray new];
+    for (VBCommentModel * commentModel in self.allCommentsArr) {
+        if ([commentModel.user.gender isEqualToString:@"f"]&&[commentModel.user.location isEqualToString:self.inputField.text]) {
+//            NSLog(@"%@",commentModel.user.location);
+            [self.filtedArr addObject:commentModel];
+        }
+    }
+    [self.tableView reloadData];
+
 }
 
 -(void)loadAllComments{
@@ -108,29 +117,91 @@ static NSString* reuseCell=@"reuseCell";
                              };
     __weak typeof(self) weakself=self;
     [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APIGetAllComments WithParams:paramDic WithSuccessBlock:^(NSDictionary *dic) {
-        [VBTools showMessage:@"加载所有评论成功" inView:weakself.view];
+        [VBTools showMessage:@"加载所有评论成功" inView:weakself.view seconds:2];
         if (dic&&[dic valueForKey:@"root_comments"]) {
             weakself.allCommentsArr=[NSMutableArray new];
-            weakself.allCommentsArr =[VBCommentModel mj_objectArrayWithKeyValuesArray:[dic valueForKey:@"root_comments"]];
+            NSArray* someComments=[VBCommentModel mj_objectArrayWithKeyValuesArray:[dic valueForKey:@"root_comments"]];
+            [weakself.allCommentsArr addObjectsFromArray:someComments];
             
-            weakself.filtedArr=[NSMutableArray new];
-            for (VBCommentModel * commentModel in weakself.allCommentsArr) {
-                if ([commentModel.user.gender isEqualToString:@"f"]) {
-                    NSLog(@"%@",commentModel.user.location);
-                    if ([commentModel.user.location  isEqualToString:@"北京"]) {
-                        [weakself.filtedArr addObject:commentModel];
-                    }
-                }
-            }
+            
+            [weakself loadMoreComments:dic];
+            
         }
         
         [weakself.tableView reloadData];
         
     } WithFailurBlock:^(NSError *error) {
-        [VBTools showMessage:[NSString stringWithFormat:@"加载失败:%@",error] inView:weakself.view];
+        [VBTools showMessage:[NSString stringWithFormat:@"加载失败:%@",error] inView:weakself.view seconds:2];
     }];
     
     // @"gsid":@"3333"
+}
+
+-(void)loadMoreComments:(NSDictionary* )dic{
+    NSDictionary* paramDic=@{
+        @"flow":@"0",
+        @"gsid":@"_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..",
+        @"wm":@"3333_2001",
+        @"i":@"c69d5f6",
+        @"b":@"1",
+        @"from":@"106A293010",
+        @"c":@"iphone",
+        @"networktype":@"wifi",
+        @"v_p":@"36",
+        @"skin":@"default",
+        @"v_f":@"1",
+        @"s":@"b09c5b4a",
+        @"lang":@"zh_CN",
+        @"sflag":@"1",
+        @"ua":@"iPhone8,4__weibo__6.10.2__iphone__os10.0.2",
+        @"aid":@"01AkbDNvLxFfY7O9lcUheY8g4T1xzGcFf9B_9yD5cy2f5J_Fo.",
+        @"id":[dic objectForKey:@"id"],
+        @"mid":[dic objectForKey:@"id"],
+        @"trim_level":@"1",
+        @"_status_id":[dic objectForKey:@"id"],
+        @"count":@"20",
+        @"is_show_bulletin":@"2",
+        @"luicode":@"10000001",
+        @"featurecode":@"10000001",
+        @"uicode":@"10000002",
+        @"fetch_level":@"0",
+        @"rid":@"11_0_8_2666932652280369984",
+        @"fromlog":@"100011778168687",
+        @"max_id_type":@"0",
+        @"max_id":[dic objectForKey:@"max_id"],
+        @"page":@"0",
+        @"lfid":@"100011778168687",
+        @"moduleID":@"feed"
+    };
+    
+    __weak typeof(self) weakself=self;
+    [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APIGetAllComments WithParams:paramDic WithSuccessBlock:^(NSDictionary *dic) {
+        if (dic&&[dic valueForKey:@"root_comments"]) {
+            
+            NSArray* someComments=[VBCommentModel mj_objectArrayWithKeyValuesArray:[dic valueForKey:@"root_comments"]];
+            NSNumber* count=[dic valueForKey:@"total_number"];
+            if (weakself.allCommentsArr.count<count.intValue&&someComments.count>0) {
+                    [weakself.allCommentsArr addObjectsFromArray:someComments];
+                    
+                    [weakself loadMoreComments:dic];
+                    return ;
+            }
+            else{
+                weakself.filtedArr=[NSMutableArray new];
+                for (VBCommentModel * commentModel in weakself.allCommentsArr) {
+                    if ([commentModel.user.gender isEqualToString:@"f"]) {
+                        NSLog(@"%@",commentModel.user.location);
+                            [weakself.filtedArr addObject:commentModel];
+                    }
+                }
+                [weakself.tableView reloadData];
+                return ;
+            }
+        }
+
+    } WithFailurBlock:^(NSError *error) {
+        [VBTools showMessage:[NSString stringWithFormat:@"Error:%@",error] inView:weakself.view seconds:1];
+    }];
 }
 
 -(void)showOriginalMBlog{

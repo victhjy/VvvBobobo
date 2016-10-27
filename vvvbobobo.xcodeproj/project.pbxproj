@@ -800,7 +800,7 @@
 				TargetAttributes = {
 					4667E3C71DC04A2B006BEB1C = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = W5CST6BRTL;
+						DevelopmentTeam = 8XCC5NXF8A;
 					};
 					4667E3E01DC04A2C006BEB1C = {
 						CreatedOnToolsVersion = 7.3;

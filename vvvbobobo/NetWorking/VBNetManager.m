@@ -55,13 +55,16 @@
          WithSuccessBlock:(requestSuccessBlock)success
           WithFailurBlock:(requestFailureBlock)failure
 {
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     switch (method) {
         case GET:{
             [self GET:path parameters:params progress:nil success:^(NSURLSessionTask *task, NSDictionary * responseObject) {
                 success(responseObject);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 VBLog(@"Error: %@", error);
                 failure(error);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             }];
             break;
         }
@@ -69,8 +72,10 @@
             [self POST:path parameters:params progress:nil success:^(NSURLSessionTask *task, NSDictionary * responseObject) {
                 VBLog(@"JSON: %@", responseObject);
                 success(responseObject);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
             } failure:^(NSURLSessionTask *operation, NSError *error) {
                 VBLog(@"Error: %@", error);
+                [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:error.localizedDescription delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                 [alert show];
                 failure(error);

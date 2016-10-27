@@ -204,7 +204,7 @@
  *
  *
  */
-+ (void)showMessage:(NSString *)message inView:(UIView *)view {
++ (void)showMessage:(NSString *)message inView:(UIView *)view seconds:(int )sec{
     //kScreenWidth-80
     MBProgressHUD * hud=[[MBProgressHUD alloc] initWithView:view];
     [view addSubview:hud];
@@ -233,15 +233,22 @@
     hud.customView = customLabel;
     hud.mode = MBProgressHUDModeCustomView;
     [hud showAnimated:YES];
-    [hud hideAnimated:YES afterDelay:2];
+    [hud hideAnimated:YES afterDelay:sec];
 }
 
-//把链接中的参数拆为字典
-//NSArray* arr=[oldString componentsSeparatedByString:@"&"];
-//NSMutableArray* muArr=[NSMutableArray new];
-//for (int  i = 0; i<arr.count; i++) {
-//    [muArr addObject:[[NSString stringWithFormat:@"气@\"%@",arr[i]] stringByReplacingOccurrencesOfString:@"=" withString:@"\":气@\""]];
-//}
-//NSLog(@"%@",muArr);
+/**
+ *  输入链接中的参数部分，转换为对应数组
+ *
+ *  @param paramString 链接参数
+ */
++(void)getArrayFromParamString:(NSString* )paramString{
+    NSArray* arr=[paramString componentsSeparatedByString:@"&"];
+    NSMutableArray* muArr=[NSMutableArray new];
+    for (int  i = 0; i<arr.count; i++) {
+        [muArr addObject:[[NSString stringWithFormat:@"气@\"%@",arr[i]] stringByReplacingOccurrencesOfString:@"=" withString:@"\":气@\""]];
+    }
+    VBLog(@"%@",muArr);
+}
+
 
 @end

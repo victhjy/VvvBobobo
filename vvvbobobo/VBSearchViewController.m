@@ -97,12 +97,12 @@ static NSString* reuseCell=@"reuseSearchResultCell";
         }
         weakself.resultMBlogs=[VBSearchResultModel mj_objectArrayWithKeyValuesArray:testArr];
         [weakself.tableView reloadData];
-        [VBTools showMessage:@"加载成功" inView:weakself.view];
+        [VBTools showMessage:@"加载成功" inView:weakself.view seconds:2];
 
     } WithFailurBlock:^(NSError *error) {
         VBLog(@"Error :%@",error);
         NSString* errorString=[NSString stringWithFormat:@"加载失败:%@",error];
-        [VBTools showMessage:errorString inView:weakself.view];
+        [VBTools showMessage:errorString inView:weakself.view seconds:2];
     }];
     
     

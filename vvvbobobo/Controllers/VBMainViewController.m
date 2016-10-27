@@ -59,9 +59,20 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    Class c = NSClassFromString(self.controllersArray[indexPath.row]);
-    UIViewController* vc=[[c alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row==0) {
+        Class c = NSClassFromString(self.controllersArray[indexPath.row]);
+        UIViewController* vc=[[c alloc]init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    else{
+        NSString* firstParam=@"gsid=_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..&wm=3333_2001&i=c69d5f6&b=1&from=106A293010&c=iphone&networktype=wifi&v_p=36&skin=default&v_f=1&s=b09c5b4a&lang=zh_CN&sflag=1&ua=iPhone8,4__weibo__6.10.2__iphone__os10.0.2&aid=01AkbDNvLxFfY7O9lcUheY8g4T1xzGcFf9B_9yD5cy2f5J_Fo.&id=4034973969153610&mid=4034973969153610&trim_level=1&_status_id=4034973969153610&count=20&is_show_bulletin=2&luicode=10000001&featurecode=10000001&uicode=10000002&fetch_level=0&rid=11_0_8_2666932652280369984&fromlog=100011778168687&is_reload=1&page=0&lfid=100011778168687&moduleID=feed&since_id=0";
+        
+        NSString* newParam=@"flow=0&gsid=_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..&wm=3333_2001&i=c69d5f6&b=1&from=106A293010&c=iphone&networktype=wifi&v_p=36&skin=default&v_f=1&s=b09c5b4a&lang=zh_CN&sflag=1&ua=iPhone8,4__weibo__6.10.2__iphone__os10.0.2&aid=01AkbDNvLxFfY7O9lcUheY8g4T1xzGcFf9B_9yD5cy2f5J_Fo.&id=4034973969153610&mid=4034973969153610&trim_level=1&_status_id=4034973969153610&count=20&is_show_bulletin=2&luicode=10000001&featurecode=10000001&uicode=10000002&fetch_level=0&rid=11_0_8_2666932652280369984&fromlog=100011778168687&max_id_type=0&max_id=147198645238573&page=0&lfid=100011778168687&moduleID=feed";
+        
+        [VBTools getArrayFromParamString:firstParam];
+        [VBTools getArrayFromParamString:newParam];
+    }
+    
 }
 
 #pragma mark - Getter

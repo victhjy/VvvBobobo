@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+     [[AFNetworkReachabilityManager sharedManager] startMonitoring];
     self.window.rootViewController=[[UINavigationController alloc]initWithRootViewController:[VBMainViewController new]];
     return YES;
 }

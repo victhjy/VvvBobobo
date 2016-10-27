@@ -98,5 +98,12 @@
  *
  *
  */
-+ (void)showMessage:(NSString *)message inView:(UIView *)view;
++ (void)showMessage:(NSString *)message inView:(UIView *)view seconds:(int )sec;
+
+/**
+ *  输入链接中的参数部分，转换为对应数组
+ *
+ *  @param paramString 链接参数
+ */
++(void)getArrayFromParamString:(NSString* )paramString;
 @end
