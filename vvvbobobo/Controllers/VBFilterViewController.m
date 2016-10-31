@@ -16,16 +16,22 @@
 @property(nonatomic,strong)NSMutableArray* filtedArr;
 @property(nonatomic,assign)BOOL isShowingOriginalMBlog;
 @property(nonatomic,strong)UIView* bgView;
+
+@property(nonatomic,strong)NSMutableDictionary* thisLoadDic;   //本次加载时候的参数，用来重新加载
+
 @end
 
 static NSString* reuseCell=@"reuseCell";
 @implementation VBFilterViewController
-
+{
+    NSInteger _totalPage;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self _createUI];
     
+    _totalPage=0;
     [self loadAllComments];
     // Do any additional setup after loading the view.
 }
@@ -36,7 +42,7 @@ static NSString* reuseCell=@"reuseCell";
     
     UITextField* input=[UITextField new];
     self.inputField=input;
-    self.inputField.placeholder=@"广东 深圳";
+    self.inputField.text=@"广东 深圳";
     UIButton* doneButton=[[UIButton alloc]init];
     [doneButton setTitle:@"OK" forState:UIControlStateNormal];
     
@@ -101,7 +107,7 @@ static NSString* reuseCell=@"reuseCell";
                              @"mid":self.mblogModel.mid,
                              @"trim_level":@"1",
                              @"_status_id":self.mblogModel.mid,
-                             @"count":@"200",
+                             @"count":self.mblogModel.comments_count<200?[NSString stringWithFormat:@"%zd",self.mblogModel.comments_count]:@"200",
                              @"is_show_bulletin":@"2",
                              @"luicode":@"10000001",
                              @"featurecode":@"10000001",
@@ -117,21 +123,28 @@ static NSString* reuseCell=@"reuseCell";
                              };
     __weak typeof(self) weakself=self;
     [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APIGetAllComments WithParams:paramDic WithSuccessBlock:^(NSDictionary *dic) {
-        [VBTools showMessage:@"加载所有评论成功" inView:weakself.view seconds:2];
-        if (dic&&[dic valueForKey:@"root_comments"]) {
+        _totalPage++;
+        if (dic&&[[dic valueForKey:@"root_comments"] count]>0) {
+            [VBTools showMessage:[NSString stringWithFormat:@"加载第%zd页评论成功",_totalPage] inView:weakself.view seconds:1];
             weakself.allCommentsArr=[NSMutableArray new];
             NSArray* someComments=[VBCommentModel mj_objectArrayWithKeyValuesArray:[dic valueForKey:@"root_comments"]];
             [weakself.allCommentsArr addObjectsFromArray:someComments];
             
+            weakself.thisLoadDic=[dic mutableCopy]; //把加载更多时候的参数存下来
+            [weakself.thisLoadDic setValue:@0 forKey:@"loadTimes"];
             
-            [weakself loadMoreComments:dic];
+            //有更多评论时加载更多
+            if (weakself.allCommentsArr.count<weakself.mblogModel.comments_count) {
+                [weakself loadMoreComments:dic];
+            }
             
+            [weakself.tableView reloadData];
         }
         
-        [weakself.tableView reloadData];
+        
         
     } WithFailurBlock:^(NSError *error) {
-        [VBTools showMessage:[NSString stringWithFormat:@"加载失败:%@",error] inView:weakself.view seconds:2];
+        [VBTools showMessage:[NSString stringWithFormat:@"加载第%zd页评论失败",_totalPage] inView:weakself.view seconds:1];
     }];
     
     // @"gsid":@"3333"
@@ -175,22 +188,56 @@ static NSString* reuseCell=@"reuseCell";
     };
     
     __weak typeof(self) weakself=self;
+    NSNumber* times=self.thisLoadDic[@"loadTimes"];
+    times=@(times.integerValue+1);
+    [self.thisLoadDic setValue:times forKey:@"loadTimes"];
     [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APIGetAllComments WithParams:paramDic WithSuccessBlock:^(NSDictionary *dic) {
         if (dic&&[dic valueForKey:@"root_comments"]) {
             
             NSArray* someComments=[VBCommentModel mj_objectArrayWithKeyValuesArray:[dic valueForKey:@"root_comments"]];
             NSNumber* count=[dic valueForKey:@"total_number"];
-            if (weakself.allCommentsArr.count<count.intValue&&someComments.count>0) {
+            if (weakself.allCommentsArr.count<count.intValue||someComments.count==0) {
+                //没加载完
+                if (someComments.count==0) {
+                    if (times.integerValue>3) {
+                        //没加载完
+                        [VBTools showMessage:[NSString stringWithFormat:@"没加载完，共%zd条评论，请求到%zd条",weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:2];
+                        weakself.filtedArr=[NSMutableArray new];
+                        for (VBCommentModel * commentModel in weakself.allCommentsArr) {
+                            if ([commentModel.user.gender isEqualToString:@"f"]) {
+                                [weakself.filtedArr addObject:commentModel];
+                            }
+                        }
+                        [weakself.tableView reloadData];
+                        return ;
+                    }
+                    else{
+                        [weakself performSelector:@selector(loadMoreComments:) withObject:weakself.thisLoadDic afterDelay:0.5];
+                    }
+                }
+                else{
+                    _totalPage++;
+                    NSInteger allPages;
+                    if(weakself.mblogModel.comments_count>200){
+                        allPages=(weakself.mblogModel.comments_count - 200)/20;
+                        [VBTools showMessage:[NSString stringWithFormat:@"加载第%zd页评论成功，预计共%zd页",_totalPage,allPages] inView:weakself.view seconds:1];
+                    }
+                    else{
+                        [VBTools showMessage:[NSString stringWithFormat:@"加载第%zd页评论成功，评论不足200条，共一页",_totalPage] inView:weakself.view seconds:1];
+                    }
+                    
                     [weakself.allCommentsArr addObjectsFromArray:someComments];
                     
                     [weakself loadMoreComments:dic];
-                    return ;
+                }
+                
             }
             else{
+                [VBTools showMessage:[NSString stringWithFormat:@"加载完成，请求到%zd页评论，共%zd条评论，请求到%zd条",_totalPage,weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:2];
                 weakself.filtedArr=[NSMutableArray new];
                 for (VBCommentModel * commentModel in weakself.allCommentsArr) {
                     if ([commentModel.user.gender isEqualToString:@"f"]) {
-                        NSLog(@"%@",commentModel.user.location);
+//                        NSLog(@"%@",commentModel.user.location);
                             [weakself.filtedArr addObject:commentModel];
                     }
                 }
@@ -207,10 +254,6 @@ static NSString* reuseCell=@"reuseCell";
 -(void)showOriginalMBlog{
     if (!self.isShowingOriginalMBlog) {
         self.bgView.hidden=NO;
-//        [self.view setNeedsUpdateConstraints];
-//        [self.view updateConstraintsIfNeeded];
-//        [self.view updateConstraints];
-//        [self.view layoutIfNeeded];
     }
     else{
         self.bgView.hidden=YES;
