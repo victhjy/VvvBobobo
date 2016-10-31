@@ -56,24 +56,24 @@ static NSString* reuseCell=@"reuseSearchResultCell";
     NSString* containerid=[NSString stringWithFormat:@"100103type=1&q=%@&t=0",searchBar.text];
     NSString* fid=[NSString stringWithFormat:@"100103type=1&q=%@&t=0",searchBar.text];
     NSDictionary* parmaDic=@{
-                             @"gsid":@"_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..",
+                             @"gsid":@"_2A251Ee_6DeTxGedJ7FoQ9ibKwzuIHXVXh2QyrDV6PUJbkdANLWzxkWppJ9OfhFUhzPDe1Sf4tft3-h0vsQ..",
                              @"wm":@"3333_2001",
                              @"i":@"c69d5f6",
                              @"b":@"1",
-                             @"from":@"106A293010",
+                             @"from":@"106B093010",
                              @"c":@"iphone",
                              @"networktype":@"wifi",
-                             @"v_p":@"36",
+                             @"v_p":@"38",
                              @"skin":@"default",
                              @"v_f":@"1",
                              @"s":@"b09c5b4a",
                              @"lang":@"zh_CN",
                              @"sflag":@"1",
-                             @"ua":@"iPhone8,4__weibo__6.10.2__iphone__os10.0.2",
+                             @"ua":@"iPhone8,4__weibo__6.11.0__iphone__os10.0.2",
                              @"aid":@"01AkbDNvLxFfY7O9lcUheY8g4T1xzGcFf9B_9yD5cy2f5J_Fo.",
-                             @"lon":@"113.945388",
+                             @"lon":@"113.945531",
                              @"uid":@"1778168687",
-                             @"container_ext":@"hotword%3A%E6%B4%97%E5%A4%B4%E5%A5%BD%E7%B4%AF%20%E6%B4%97%E5%8F%91%E6%B0%B4%E5%A5%BD%E8%B4%B5%7Cnettype%3Awifi%7Cgps_timestamp%3A1477456944092.413",
+                             @"container_ext":@"nettype%3Awifi%7Cgps_timestamp%3A1477884736897.419",
                              @"count":@"20",
                              @"luicode":@"10000010",
                              @"containerid":containerid,
@@ -81,10 +81,10 @@ static NSString* reuseCell=@"reuseSearchResultCell";
                              @"uicode":@"10000003",
                              @"fid":fid,
                              @"need_head_cards":@"1",
-                             @"lat":@"22.557267",
+                             @"lat":@"22.557542",
                              @"page":@"1",
                              @"lfid":@"231091",
-                             @"moduleID":@"pagecard",
+                             @"moduleID":@"pagecard"
                              };
     __weak typeof(self) weakself=self;
     [[VBNetManager sharedManager] requestWithMethod:GET WithPath:APISearch WithParams:parmaDic WithSuccessBlock:^(NSDictionary *dic) {

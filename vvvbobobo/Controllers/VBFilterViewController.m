@@ -82,7 +82,7 @@ static NSString* reuseCell=@"reuseCell";
 -(void)loadAllComments{
    
     NSDictionary* paramDic=@{
-                             @"gsid":@"_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..",
+                             @"gsid":@"_2A251Ee_6DeTxGedJ7FoQ9ibKwzuIHXVXh2QyrDV6PUJbkdANLWzxkWppJ9OfhFUhzPDe1Sf4tft3-h0vsQ..",
                              @"wm":@"3333_2001",
                              @"i":@"c69d5f6",
                              @"b":@"1",
@@ -140,7 +140,7 @@ static NSString* reuseCell=@"reuseCell";
 -(void)loadMoreComments:(NSDictionary* )dic{
     NSDictionary* paramDic=@{
         @"flow":@"0",
-        @"gsid":@"_2A251FF3ZDeTxGedJ7FoQ9ibKwzuIHXVXgNYRrDV6PUJbkdANLUTFkWp-BlP3z3nhj313BjT5D1xQ1wwNCQ..",
+        @"gsid":@"_2A251Ee_6DeTxGedJ7FoQ9ibKwzuIHXVXh2QyrDV6PUJbkdANLWzxkWppJ9OfhFUhzPDe1Sf4tft3-h0vsQ..",
         @"wm":@"3333_2001",
         @"i":@"c69d5f6",
         @"b":@"1",
