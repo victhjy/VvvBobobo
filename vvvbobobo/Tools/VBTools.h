@@ -106,4 +106,9 @@
  *  @param paramString 链接参数
  */
 +(void)getArrayFromParamString:(NSString* )paramString;
+
++(void)MBHudShow;
+
++(void)MBHudHidden;
+
 @end

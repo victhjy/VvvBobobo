@@ -250,5 +250,13 @@
     VBLog(@"%@",muArr);
 }
 
++(void)MBHudShow{
+    [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+}
+
++(void)MBHudHidden{
+    [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
+}
+
 
 @end

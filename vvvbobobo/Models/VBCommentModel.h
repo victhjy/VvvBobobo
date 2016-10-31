@@ -44,4 +44,6 @@
 @property(nonatomic,strong)VBUserModel* user;
 
 @property(nonatomic,strong)NSArray* url_objects;
+
+@property(nonatomic,assign)NSInteger index;
 @end

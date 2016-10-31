@@ -199,11 +199,13 @@ static NSString* reuseCell=@"reuseCell";
             if (weakself.allCommentsArr.count<count.intValue||someComments.count==0) {
                 //没加载完
                 if (someComments.count==0) {
-                    if (times.integerValue>3) {
+                    if (times.integerValue>(weakself.mblogModel.comments_count - 200)/20) {
                         //没加载完
                         [VBTools showMessage:[NSString stringWithFormat:@"没加载完，共%zd条评论，请求到%zd条",weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:2];
                         weakself.filtedArr=[NSMutableArray new];
-                        for (VBCommentModel * commentModel in weakself.allCommentsArr) {
+                        for (int i=0;i<weakself.allCommentsArr.count;i++) {
+                            VBCommentModel * commentModel=weakself.allCommentsArr[i];
+                            commentModel.index=i;
                             if ([commentModel.user.gender isEqualToString:@"f"]) {
                                 [weakself.filtedArr addObject:commentModel];
                             }
@@ -233,9 +235,11 @@ static NSString* reuseCell=@"reuseCell";
                 
             }
             else{
-                [VBTools showMessage:[NSString stringWithFormat:@"加载完成，请求到%zd页评论，共%zd条评论，请求到%zd条",_totalPage,weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:2];
+                [VBTools showMessage:[NSString stringWithFormat:@"加载完成，请求到%zd页评论，共%zd条评论，请求到%zd条",_totalPage,weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:4];
                 weakself.filtedArr=[NSMutableArray new];
-                for (VBCommentModel * commentModel in weakself.allCommentsArr) {
+                for (int i=0;i<weakself.allCommentsArr.count;i++) {
+                    VBCommentModel * commentModel=weakself.allCommentsArr[i];
+                    commentModel.index=i;
                     if ([commentModel.user.gender isEqualToString:@"f"]) {
 //                        NSLog(@"%@",commentModel.user.location);
                             [weakself.filtedArr addObject:commentModel];

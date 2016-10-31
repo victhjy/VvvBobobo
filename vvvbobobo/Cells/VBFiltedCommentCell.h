@@ -14,6 +14,7 @@
 @property(nonatomic,strong)UILabel* commentLabel;
 @property(nonatomic,strong)UILabel* agreeLabel;
 @property(nonatomic,strong)UILabel* areaLabel;
+@property(nonatomic,strong)UILabel* indexLabel;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 -(void)configWithModel:(VBCommentModel* )model;

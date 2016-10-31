@@ -22,18 +22,24 @@
     self.areaLabel=[UILabel new];
     self.agreeLabel=[UILabel new];
     self.commentLabel=[UILabel new];
+    self.indexLabel=[UILabel new];
     
     self.nameLabel.font=[UIFont systemFontOfSize:14];
     self.areaLabel.font=self.nameLabel.font;
     self.agreeLabel.font=self.nameLabel.font;
+    self.indexLabel.font=self.nameLabel.font;
     self.commentLabel.font=self.nameLabel.font;
     self.commentLabel.numberOfLines=0;
     self.commentLabel.preferredMaxLayoutWidth=UIScreenWidth-20;
     
-    [self.contentView addSubviews:@[self.nameLabel,self.areaLabel,self.agreeLabel,self.commentLabel]];
+    [self.contentView addSubviews:@[self.nameLabel,self.areaLabel,self.agreeLabel,self.commentLabel,self.indexLabel]];
     
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self.contentView).offset(10);
+    }];
+    [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.nameLabel.mas_right).offset(20);
+        make.top.equalTo(self.nameLabel);
     }];
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.nameLabel.mas_bottom).offset(10);
@@ -56,7 +62,7 @@
     self.commentLabel.text=model.text;
     self.agreeLabel.text=[NSString stringWithFormat:@"赞:%zd",model.like_counts];
     self.areaLabel.text=model.user.location;
-    
+    self.indexLabel.text=[NSString stringWithFormat:@"%zd",model.index?model.index:0];
     
      CGFloat newHeight=[UILabel getHeightByWidth:UIScreenWidth-20 title:self.commentLabel.text font:self.commentLabel.font];
     [self.commentLabel mas_updateConstraints:^(MASConstraintMaker *make) {
