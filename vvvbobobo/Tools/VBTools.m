@@ -258,5 +258,20 @@
     [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow animated:YES];
 }
 
+//解析新浪微博中的日期
++ (NSString*)resolveSinaWeiboDate:(NSString*)date{
+    NSDateFormatter *iosDateFormater=[[NSDateFormatter alloc]init];
+    iosDateFormater.dateFormat=@"EEE MMM d HH:mm:ss Z yyyy";
+    //必须设置，否则无法解析
+    iosDateFormater.locale=[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"];
+    NSDate *date1=[iosDateFormater dateFromString:date];
+    
+    //目的格式
+    NSDateFormatter *resultFormatter=[[NSDateFormatter alloc]init];
+    [resultFormatter setDateFormat:@"MM月dd日 HH:mm"];
+    NSString* str=[resultFormatter stringFromDate:date1];
+    return str;
+}
+
 
 @end

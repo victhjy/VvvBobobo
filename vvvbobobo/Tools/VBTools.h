@@ -111,4 +111,7 @@
 
 +(void)MBHudHidden;
 
+//解析新浪微博中的日期
++ (NSString*)resolveSinaWeiboDate:(NSString*)date;
+
 @end

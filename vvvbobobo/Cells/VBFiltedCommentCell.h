@@ -15,6 +15,7 @@
 @property(nonatomic,strong)UILabel* agreeLabel;
 @property(nonatomic,strong)UILabel* areaLabel;
 @property(nonatomic,strong)UILabel* indexLabel;
+@property(nonatomic,strong)UILabel* createTimeLabel;
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 -(void)configWithModel:(VBCommentModel* )model;

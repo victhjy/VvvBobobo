@@ -31,7 +31,7 @@
     self.userNameLabel.font=self.mBlogTextLabel.font;
     self.commentCountLabel.font=self.mBlogTextLabel.font;
     self.mBlogIdLabel.font=self.mBlogTextLabel.font;
-//    self.createTimeLabel.font=self.mBlogTextLabel.font;
+    self.createTimeLabel.font=self.mBlogTextLabel.font;
     
     [self.contentView addSubviews:@[self.userNameLabel,self.mBlogTextLabel,self.commentCountLabel,self.createTimeLabel,self.mBlogIdLabel]];
     
@@ -52,10 +52,10 @@
         make.top.equalTo(self.mBlogTextLabel.mas_bottom).offset(10);
     }];
     
-//    [self.createTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.equalTo(self.commentCountLabel.mas_right).offset(10);
-//        make.top.equalTo(self.commentCountLabel);
-//    }];
+    [self.createTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView).offset(-10);
+        make.bottom.equalTo(self.commentCountLabel);
+    }];
     
     
 }
@@ -66,7 +66,7 @@
     self.commentCountLabel.text=[NSString stringWithFormat:@"评论数:%zd",model.comments_count];
     CGFloat newHeight=[UILabel getHeightByWidth:UIScreenWidth-20 title:self.mBlogTextLabel.text font:self.mBlogTextLabel.font];
     self.mBlogIdLabel.text=[NSString stringWithFormat:@"ID  ：  %zd",model.mBlogId];
-//    self.createTimeLabel.text=[NSString stringWithFormat:@"发布日期: %@",model.created_at];
+    self.createTimeLabel.text=[NSString stringWithFormat:@"时间: %@",[VBTools resolveSinaWeiboDate:model.created_at]];
     
     [self.mBlogTextLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.height.mas_equalTo(newHeight);
