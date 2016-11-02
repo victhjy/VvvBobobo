@@ -16,7 +16,7 @@
 @property(nonatomic,strong)NSMutableArray* filtedArr;
 @property(nonatomic,assign)BOOL isShowingOriginalMBlog;
 @property(nonatomic,strong)UIView* bgView;
-
+@property(nonatomic,strong)UIButton* gender;
 @property(nonatomic,strong)NSMutableDictionary* thisLoadDic;   //本次加载时候的参数，用来重新加载
 
 @end
@@ -25,6 +25,8 @@ static NSString* reuseCell=@"reuseCell";
 @implementation VBFilterViewController
 {
     NSInteger _totalPage;
+    NSInteger _firstPagesCount;
+    NSString *_genderStr;    //   F   M
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,25 +46,52 @@ static NSString* reuseCell=@"reuseCell";
     self.inputField=input;
     self.inputField.text=@"广东 深圳";
     UIButton* doneButton=[[UIButton alloc]init];
-    [doneButton setTitle:@"OK" forState:UIControlStateNormal];
+    [doneButton setTitle:@"按地区" forState:UIControlStateNormal];
     
     doneButton.titleLabel.textColor=[UIColor blackColor];
     doneButton.backgroundColor=[UIColor lightGrayColor];
     
     [doneButton addTarget:self action:@selector(gotoSelect) forControlEvents:UIControlEventTouchUpInside];
     
-    [self.view addSubviews:@[self.inputField,doneButton,self.tableView]];
+    UIButton* showAll=[[UIButton alloc]init];
+    [showAll setTitle:@"所有" forState:UIControlStateNormal];
+    showAll.titleLabel.textColor=[UIColor blackColor];
+    showAll.backgroundColor=[UIColor lightGrayColor];
+    [showAll addTarget:self action:@selector(showAllComments) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.gender=[[UIButton alloc]init];
+     [self.gender setTitle:@"f" forState:UIControlStateNormal];
+    self.gender.titleLabel.textColor=[UIColor blackColor];
+    self.gender.backgroundColor=[UIColor lightGrayColor];
+    [self.gender addTarget:self action:@selector(selectGender:) forControlEvents:UIControlEventTouchUpInside];
+    _genderStr=self.gender.titleLabel.text;
+    
+    
+    [self.view addSubviews:@[self.inputField,doneButton,self.tableView,showAll,self.gender]];
     [self.inputField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.equalTo(self.view).offset(10);
         make.height.equalTo(@30);
-        make.right.equalTo(self.view.mas_centerX);
+        make.width.mas_equalTo((UIScreenWidth-25)/4);
     }];
     [doneButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.inputField);
-        make.right.equalTo(self.view).offset(-10);
-        make.left.equalTo(self.inputField.mas_right);
+        make.width.mas_equalTo(self.inputField);
+        make.left.equalTo(self.inputField.mas_right).offset(5);
         make.height.equalTo(@30);
     }];
+    [self.gender mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.inputField);
+        make.height.mas_equalTo(self.inputField);
+        make.left.equalTo(doneButton.mas_right).offset(5);
+        make.width.mas_equalTo(self.inputField);
+    }];
+    [showAll mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.inputField);
+        make.left.equalTo(self.gender.mas_right).offset(5);
+        make.height.mas_equalTo(self.inputField);
+        make.width.mas_equalTo(self.inputField);
+    }];
+    
     
     [self.tableView registerClass:[VBFiltedCommentCell class] forCellReuseIdentifier:reuseCell];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,18 +101,46 @@ static NSString* reuseCell=@"reuseCell";
     
 }
 
+#pragma mark - actions
+
 -(void)gotoSelect{
     [self.inputField resignFirstResponder];
     self.filtedArr=[NSMutableArray new];
     for (VBCommentModel * commentModel in self.allCommentsArr) {
         if ([commentModel.user.gender isEqualToString:@"f"]&&[commentModel.user.location isEqualToString:self.inputField.text]) {
-//            NSLog(@"%@",commentModel.user.location);
             [self.filtedArr addObject:commentModel];
         }
     }
     [self.tableView reloadData];
 
 }
+
+-(void)showAllComments{
+    self.filtedArr=[NSMutableArray new];
+    self.filtedArr=[self.allCommentsArr mutableCopy];
+    [self.tableView reloadData];
+}
+
+-(void)selectGender:(UIButton* )sender{
+    self.filtedArr=[NSMutableArray new];
+    if ([self.gender.titleLabel.text isEqualToString:@"f"]) {
+        _genderStr=@"m";
+    }else{
+        _genderStr=@"f";
+    }
+    for (VBCommentModel * commentModel in self.allCommentsArr) {
+        if ([commentModel.user.gender isEqualToString:_genderStr]&&[commentModel.user.location isEqualToString:self.inputField.text]) {
+            //            NSLog(@"%@",commentModel.user.location);
+            [self.filtedArr addObject:commentModel];
+        }
+    }
+    self.gender.titleLabel.text=_genderStr;
+    [self.tableView reloadData];
+}
+
+
+#pragma mark - request
+
 
 -(void)loadAllComments{
    
@@ -135,6 +192,7 @@ static NSString* reuseCell=@"reuseCell";
             
             //有更多评论时加载更多
             if (weakself.allCommentsArr.count<weakself.mblogModel.comments_count) {
+                _firstPagesCount=weakself.allCommentsArr.count;
                 [weakself loadMoreComments:dic];
             }
             
@@ -199,7 +257,7 @@ static NSString* reuseCell=@"reuseCell";
             if (weakself.allCommentsArr.count<count.intValue||someComments.count==0) {
                 //没加载完
                 if (someComments.count==0) {
-                    if (times.integerValue>(weakself.mblogModel.comments_count - 200)/20) {
+                    if (times.integerValue>(weakself.mblogModel.comments_count - _firstPagesCount)/20) {
                         //没加载完
                         [VBTools showMessage:[NSString stringWithFormat:@"没加载完，共%zd条评论，请求到%zd条",weakself.mblogModel.comments_count,weakself.allCommentsArr.count] inView:weakself.view seconds:2];
                         weakself.filtedArr=[NSMutableArray new];
@@ -214,14 +272,15 @@ static NSString* reuseCell=@"reuseCell";
                         return ;
                     }
                     else{
-                        [weakself performSelector:@selector(loadMoreComments:) withObject:weakself.thisLoadDic afterDelay:0.5];
+                        [weakself performSelector:@selector(loadMoreComments:) withObject:weakself.thisLoadDic afterDelay:0.2];
                     }
                 }
                 else{
                     _totalPage++;
-                    NSInteger allPages;
+                   static NSInteger allPages;
+                    allPages=(weakself.mblogModel.comments_count - 200)/20;
                     if(weakself.mblogModel.comments_count>200){
-                        allPages=(weakself.mblogModel.comments_count - 200)/20;
+                        
                         [VBTools showMessage:[NSString stringWithFormat:@"加载第%zd页评论成功，预计共%zd页",_totalPage,allPages] inView:weakself.view seconds:1];
                     }
                     else{
@@ -295,6 +354,10 @@ static NSString* reuseCell=@"reuseCell";
 
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    VBCommentModel* model=self.allCommentsArr[indexPath.row];
+}
+
 
 #pragma mark - Getter
 
@@ -325,6 +388,12 @@ static NSString* reuseCell=@"reuseCell";
         _bgView.backgroundColor=[UIColor lightGrayColor];
         _bgView.frame=CGRectMake(10, 10, UIScreenWidth-20, UIScreenHeight-74);
         _bgView.hidden=YES;
+        
+        
+        
+        UITapGestureRecognizer* gesture=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(showOriginalMBlog)];
+        _bgView.userInteractionEnabled=YES;
+        [_bgView addGestureRecognizer:gesture];
     }
     return _bgView;
 }
